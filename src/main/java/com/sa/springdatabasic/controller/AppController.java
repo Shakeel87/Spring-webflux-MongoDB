@@ -29,11 +29,18 @@ public class AppController {
        return ResponseEntity.ok().body(repository.findAll());
     }
 
-    @GetMapping("/persons/{id}")
-    ResponseEntity<Mono<Person>> findAPerson(String id){
+    @GetMapping("/persons/person/{id}")
+    ResponseEntity<Mono<Person>> findAPersonById(@PathVariable String id){
         return ResponseEntity.ok()
                 .body(repository.findById(id));
     }
+
+    @GetMapping("/persons/{zipCode}")
+    ResponseEntity<Flux<Person>> findAPersonByAddress(@PathVariable int zipCode){
+        return ResponseEntity.ok()
+                .body(repository.findByAddress_zipCode(zipCode));
+    }
+
 
     @PostMapping("/persons/person")
     ResponseEntity<Mono<Person>> persistAPerson( @RequestBody @Valid Person person){

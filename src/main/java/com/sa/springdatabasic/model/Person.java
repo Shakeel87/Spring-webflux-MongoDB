@@ -25,6 +25,6 @@ public class Person {
     private String name;
     @NotNull
     private int age;
-    private List<Address> addressList;
+    private List<Address> address;
 
 }
